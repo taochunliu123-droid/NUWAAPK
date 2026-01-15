@@ -1,0 +1,18 @@
+{
+  "name": "robot-assistant-vercel",
+  "version": "1.0.0",
+  "description": "智能客服機器人 API - OpenAI Assistant + TTS",
+  "private": true,
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'No build step needed for Edge Functions'",
+    "start": "vercel dev"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "vercel": "^32.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
