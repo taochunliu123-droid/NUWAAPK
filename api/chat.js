@@ -1,6 +1,3 @@
-// /api/chat.js
-// OpenAI Assistant API 端點
-
 export const config = {
   runtime: 'edge',
 };
@@ -114,7 +111,7 @@ export default async function handler(req) {
     // Step 4: 等待執行完成 (Polling)
     let runStatus = runData.status;
     let attempts = 0;
-    const maxAttempts = 60; // 最多等待 60 秒
+    const maxAttempts = 60;
 
     while (runStatus !== 'completed' && runStatus !== 'failed' && attempts < maxAttempts) {
       await new Promise(resolve => setTimeout(resolve, 1000));
@@ -163,7 +160,6 @@ export default async function handler(req) {
     const messagesData = await messagesResponse.json();
     const assistantMessage = messagesData.data[0];
     
-    // 提取文字回應
     let reply = '';
     if (assistantMessage && assistantMessage.content) {
       for (const content of assistantMessage.content) {

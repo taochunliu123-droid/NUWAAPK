@@ -1,6 +1,3 @@
-// /api/tts.js
-// OpenAI TTS API 端點
-
 export const config = {
   runtime: 'edge',
 };
@@ -26,7 +23,7 @@ export default async function handler(req) {
   }
 
   try {
-    const { text, voice = 'alloy', speed = 1.0 } = await req.json();
+    const { text, voice = 'nova', speed = 1.0 } = await req.json();
 
     if (!text) {
       return new Response(JSON.stringify({ error: 'Text is required' }), {
@@ -60,8 +57,8 @@ export default async function handler(req) {
       body: JSON.stringify({
         model: 'tts-1',
         input: text,
-        voice: voice, // alloy, echo, fable, onyx, nova, shimmer
-        speed: speed, // 0.25 to 4.0
+        voice: voice,
+        speed: speed,
         response_format: 'mp3',
       }),
     });
@@ -71,7 +68,6 @@ export default async function handler(req) {
       throw new Error(errorData.error?.message || 'TTS API failed');
     }
 
-    // 回傳音檔
     const audioBuffer = await response.arrayBuffer();
     
     return new Response(audioBuffer, {
